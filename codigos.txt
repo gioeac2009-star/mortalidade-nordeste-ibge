@@ -1,0 +1,36 @@
+Rscript -e 'install.packages(c("shiny", "bslib", "ggplot2", "dplyr", "readr", "stringr", "viridis", "plotly", "DT", "tidyr", "bsicons"), repos="https://cloud.r-project.org")'
+Rscript -e 'install.packages("readxl")'
+Rscript -e 'install.packages(c("readxl"), repos="https://cloud.r-project.org")'
+
+# ==========================================
+# run web app
+python3 -m http.server 8000 --directory docs
+http://localhost:8000
+# ==========================================
+
+
+# ==========================================
+# EMPACOTAR PARA WEBR (SHINYLIVE)
+# Sempre que atualizar o arquivo app.r ou os dados, rode o comando de exportação.
+# ==========================================
+
+# 1. Instalar pacote shinylive (caso não tenha)
+Rscript -e 'install.packages("shinylive", repos="https://cloud.r-project.org")'
+
+# 2. Exportar o aplicativo Shiny para a pasta "docs"
+Rscript -e 'library(shinylive); export(".", "docs")'
+
+# ==========================================
+# ATUALIZAR O GITHUB (Após modificar o app)
+# ==========================================
+# Sempre que você alterar seu código e empacotar para WebR,
+# rode os 3 comandos abaixo no terminal do Mac para atualizar o site:
+
+# a) Adiciona todas as modificações
+git add .
+
+# b) Confirma as alterações (você pode alterar o texto entre aspas)
+git commit -m "Atualização no aplicativo"
+
+# c) Envia para o GitHub Pages
+git push
